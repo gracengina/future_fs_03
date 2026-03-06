@@ -1,8 +1,12 @@
 import Image from "next/image";
 
+// Define the API URL at the top of the file
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+
 async function getFullMenu() {
   try {
-    const res = await fetch('http://localhost:5000/api/menu', { cache: 'no-store' });
+    // Template literal handles the dynamic routing
+    const res = await fetch(`${API_URL}/api/menu`, { cache: 'no-store' });
     if (!res.ok) throw new Error('Failed to fetch menu');
     return res.json();
   } catch (error) {

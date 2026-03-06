@@ -1,9 +1,10 @@
 import Image from "next/image";
 
-// 1. Function to fetch data from your Node.js backend
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+
 async function getFeaturedItems() {
   try {
-    const res = await fetch('http://localhost:5000/api/featured', { cache: 'no-store' });
+    const res = await fetch(`${API_URL}/api/featured`, { cache: 'no-store' });
     if (!res.ok) throw new Error('Failed to fetch data');
     return res.json();
   } catch (error) {
